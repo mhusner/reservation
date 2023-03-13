@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <LangVersion>7.3</LangVersion>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\ReservationsApi.Contracts\ReservationsApi.Contracts.csproj" />
+    </ItemGroup>
+    
+    <ItemGroup>
+        <PackageReference Include="FluentValidation" Version="11.0.0" />
+    </ItemGroup>
+
+</Project>

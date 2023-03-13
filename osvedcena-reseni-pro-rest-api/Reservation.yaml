@@ -1,0 +1,284 @@
+openapi: 3.1.0
+x-stoplight:
+  id: b17f2bfeb948e
+info:
+  title: Registračka
+  version: '1.0'
+  summary: Ukázkové API pro účely přednášek
+  description: Tato specifikace slouží jako ukázka možností OAS prezentované v rámci mých přednášek
+  contact:
+    name: Miroslav Holec
+    url: 'https://www.restapi.cz'
+    email: mirek@miroslavholec.cz
+servers:
+  - url: 'https://registracka.azurewebsites.net'
+    description: Production
+tags:
+  - name: Registrations
+    description: Správa registrací
+paths:
+  '/registrations/{id}':
+    parameters:
+      - schema:
+          type: string
+          minLength: 6
+          maxLength: 6
+          example: lakso9
+        name: id
+        in: path
+        required: true
+        description: APID (6 chars)
+    get:
+      summary: Registrace dle ID
+      tags:
+        - Registrations
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Registration'
+              examples:
+                Example1:
+                  value:
+                    id: ksopek8
+                    name: Miroslav Holec
+                    date: '2019-08-24T14:15:22Z'
+                Example2:
+                  value:
+                    id: l0osld
+                    name: Jan Novák
+                    date: '2019-08-24'
+          headers: {}
+        '400':
+          $ref: '#/components/responses/400-BadRequest'
+        '404':
+          $ref: '#/components/responses/404-NotFound'
+        '500':
+          $ref: '#/components/responses/500-InternalServerError'
+      operationId: GetRegistration
+      description: Vrací registraci na základě APID
+  /registrations:
+    post:
+      summary: Vytvoření registrace
+      operationId: CreateRegistration
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Registration'
+        '400':
+          $ref: '#/components/responses/400-BadRequest'
+        '500':
+          $ref: '#/components/responses/500-InternalServerError'
+      description: Vytvoří registraci pro vybrané jméno a datum
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegistrationCreate'
+        description: 'Detaily registrace, která má být vytvořena'
+      parameters: []
+      tags:
+        - Registrations
+components:
+  schemas:
+    Registration:
+      title: Registration
+      type: object
+      examples:
+        - id: ksopek8
+          name: Miroslav Holec
+          date: '2019-08-24T14:15:22Z'
+      properties:
+        id:
+          type: string
+          minLength: 6
+          maxLength: 6
+          description: Identifikátor APID
+          example: PSK86H
+        name:
+          type: string
+          maxLength: 30
+          description: Jméno účastníka
+          example: Jan Novák
+        date:
+          type: string
+          format: date-time
+          description: Datum
+      description: Detaily registrace na událost..
+    RegistrationCreate:
+      title: RegistrationCreate
+      type: object
+      description: Model pro registraci na událost. Registruje se účastník vůči vybranému datu.
+      properties:
+        name:
+          type: string
+          maxLength: 30
+          description: Jméno účastníka akce
+          example: Jan Novák
+        date:
+          type: string
+          format: date-time
+          description: Datum na které se registruje
+      required:
+        - name
+        - date
+      examples:
+        - name: Jan Novák
+          date: '2019-08-24T14:15:22Z'
+    ProblemDetails:
+      title: ProblemDetails
+      type: object
+      description: Chyba vzniklá v REST API
+      properties:
+        title:
+          type: string
+          description: Druh chyby
+          example: Internal server error
+        type:
+          type: string
+          format: uri
+          description: 'Typ chyby, informace o chybě'
+          example: 'https://www.restapi.cz/probs/problem-details'
+        status:
+          type: integer
+          description: HTTP Status Code
+          maximum: 599
+          minimum: 400
+          example: 500
+        detail:
+          type: string
+          description: Detailní informace
+      examples:
+        - title: Internal server error
+          type: 'https://www.restapi.cz/probs/problem-details'
+          status: 500
+          detail: '---'
+    ValidationProblemDetails:
+      title: ValidationProblemDetails
+      type: object
+      description: Chyba vzniklá v REST API
+      examples:
+        - title: Validation failed!
+          type: 'https://www.restapi.cz/probs/problem-details'
+          status: 400
+          detail: See more in errors array
+          errors:
+            - propertyName: Name
+              errorMessage: Name is required!
+              attemptedValue: null
+              errorCode: NotEmptyValidator
+      properties:
+        title:
+          type: string
+          description: Druh chyby
+          example: Internal server error
+        type:
+          type: string
+          format: uri
+          description: 'Typ chyby, informace o chybě'
+          example: 'https://www.restapi.cz/probs/problem-details'
+        status:
+          type: integer
+          description: HTTP Status Code
+          maximum: 599
+          minimum: 400
+          example: 500
+        detail:
+          type: string
+          description: Detailní informace
+        errors:
+          type: array
+          description: Seznam validačních chyb
+          items:
+            $ref: '#/components/schemas/ValidationError'
+    ValidationError:
+      title: ValidationError
+      type: object
+      examples:
+        - propertyName: Name
+          errorMessage: Name is required!
+          attemptedValue: null
+          errorCode: NotEmptyValidator
+      description: Validační chyba
+      properties:
+        propertyName:
+          type: string
+          example: Name
+          description: Název validované property
+        errorMessage:
+          type: string
+          example: Name is required!
+          description: Chybová zpráva
+        attemptedValue:
+          type: string
+          description: Původně odeslaná (chybná) hodnota
+        errorCode:
+          type: string
+          example: NotEmptyValidator
+          description: Identifikátor chybového validátoru
+  responses:
+    400-BadRequest:
+      description: 'Neúspěšný výsledek zpracování, obvykle způsobený neúspěšnou validací vstupů'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ValidationProblemDetails'
+          examples:
+            Default example:
+              value:
+                title: Validation failed!
+                type: 'https://www.restapi.cz/probs/problem-details'
+                status: 400
+                detail: See more in errors array
+                errors:
+                  - propertyName: Name
+                    errorMessage: Name is required!
+                    attemptedValue: null
+                    errorCode: NotEmptyValidator
+      headers:
+        RequestId:
+          schema:
+            type: string
+            example: f65eee54-bfe9-4113-a715-8cbb5ddcd36f
+          description: Request ID pro logování a trasování
+    500-InternalServerError:
+      description: Interní chyba serveru
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+          examples:
+            Default 500 error:
+              value:
+                title: Internal server error
+                type: 'https://www.restapi.cz/probs/problem-details'
+                status: 500
+      headers:
+        RequestId:
+          schema:
+            type: string
+            example: f65eee54-bfe9-4113-a715-8cbb5ddcd36f
+          description: Request ID pro logování a trasování
+    404-NotFound:
+      description: Resource nebyl nalezen
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+          examples:
+            Default not found:
+              value:
+                title: Object not found!
+                type: 'https://www.restapi.cz/probs/problem-details'
+                status: 404
+      headers:
+        RequestId:
+          schema:
+            type: string
+            example: f65eee54-bfe9-4113-a715-8cbb5ddcd36f
+          description: Request ID pro logování a trasování

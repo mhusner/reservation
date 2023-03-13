@@ -1,0 +1,54 @@
+<html>
+
+<head>
+    <title>Dej mi registraci</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/css/foundation.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body style="padding:10px;">
+    <div id="data">
+        <h3>Načti registraci {{ idcko }}</h3>
+
+        <div>
+            <label>RegistraceID</label>
+            <input style="width:200;" v-model="idcko" type="text" placeholder="registrace id " />
+
+            <label>Example</label>
+            <input style="width:200;" v-model="example" type="text"  />
+            <input type="submit" class="button" @click="update" value="Načti registraci" />
+        </div>
+
+        <table>
+            <tr>
+                <td>Jméno</td>
+                <td>{{ data.name }}</td>
+            </tr>
+            <tr>
+                <td>Datum</td>
+                <td>{{ data.date }}</td>
+            </tr>
+        </table>
+    </div>
+
+    <script type="text/javascript">
+        var app = new Vue({
+            el: '#data',
+            data: {
+                idcko: "",
+                example: "Example1",
+                data: ""
+            },
+            methods: {
+                update() {
+                    axios.get("http://127.0.0.1:4010/registrations/" + this.idcko, 
+                    { headers : { Prefer : 'example=' + this.example}})
+                        .then(response => { this.data = response.data })
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

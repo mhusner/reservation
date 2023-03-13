@@ -1,0 +1,17 @@
+open api specifikace
+https://swagger.io/specification
+
+stoplight studio - návrh rest api
+https://stoplight.io/studio
+
+integrační testy v .NETu
+https://docs.microsoft.com/en-us/aspnet/core/test/integration-tests
+
+newman CLI
+https://github.com/postmanlabs/newman
+
+prism CLI
+https://meta.stoplight.io/docs/prism/ZG9jOjk0-prism-cli
+
+vývojářské nástroje
+- odkazy jsou uvedené přímo v prezentaci na slide č. 8
