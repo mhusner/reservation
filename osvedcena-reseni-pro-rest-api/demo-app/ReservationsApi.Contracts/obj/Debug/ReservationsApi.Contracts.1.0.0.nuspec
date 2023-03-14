@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>ReservationsApi.Contracts</id>
+    <version>1.0.0</version>
+    <authors>ReservationsApi.Contracts</authors>
+    <description>Package Description</description>
+    <dependencies>
+      <group targetFramework=".NETStandard2.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Work\Projects\PERSONAL-GITHUB\MiniAPI\Rezervace\osvedcena-reseni-pro-rest-api\demo-app\ReservationsApi.Contracts\bin\Debug\netstandard2.0\ReservationsApi.Contracts.dll" target="lib\netstandard2.0\ReservationsApi.Contracts.dll" />
+  </files>
+</package>
