@@ -1,0 +1,25 @@
+{
+  "version": 2,
+  "dgSpecHash": "U7J1iBPcjkpL6doJIwbyxZoUJgNxd+v7wYkJ2ZKhFG1siis7JMszb+Vza9Xur4s50Ubr65BpHIBXoLu+hFp50g==",
+  "success": true,
+  "projectFilePath": "C:\\Work\\Projects\\PERSONAL-GITHUB\\MiniAPI\\Rezervace\\DemoApp\\ReservationsApi.Contracts.Validators\\ReservationsApi.Contracts.Validators.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\mhusner\\.nuget\\packages\\fluentvalidation\\11.0.0\\fluentvalidation.11.0.0.nupkg.sha512",
+    "C:\\Users\\mhusner\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1803",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "You are running the 'restore' operation with an 'HTTP' source, 'http://proget.alefnula.com/nuget/AleFIT_nuget'. Non-HTTPS access will be removed in a future version. Consider migrating to an 'HTTPS' source."
+    },
+    {
+      "code": "NU1803",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "You are running the 'restore' operation with an 'HTTP' source, 'http://nuget.develop.local/nuget/AleFIT_nuget'. Non-HTTPS access will be removed in a future version. Consider migrating to an 'HTTPS' source."
+    }
+  ]
+}

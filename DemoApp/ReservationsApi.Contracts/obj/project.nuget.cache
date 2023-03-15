@@ -1,0 +1,24 @@
+{
+  "version": 2,
+  "dgSpecHash": "ta/dNTZZxP9A3t8iZexgWAIB4UTQozz0tj3RwUipo0At0hW7KK/en0Dryf26k20ThKTv/+vOKJbaX6ptIscM2g==",
+  "success": true,
+  "projectFilePath": "C:\\Work\\Projects\\PERSONAL-GITHUB\\MiniAPI\\Rezervace\\DemoApp\\ReservationsApi.Contracts\\ReservationsApi.Contracts.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\mhusner\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1803",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "You are running the 'restore' operation with an 'HTTP' source, 'http://proget.alefnula.com/nuget/AleFIT_nuget'. Non-HTTPS access will be removed in a future version. Consider migrating to an 'HTTPS' source."
+    },
+    {
+      "code": "NU1803",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "You are running the 'restore' operation with an 'HTTP' source, 'http://nuget.develop.local/nuget/AleFIT_nuget'. Non-HTTPS access will be removed in a future version. Consider migrating to an 'HTTPS' source."
+    }
+  ]
+}
