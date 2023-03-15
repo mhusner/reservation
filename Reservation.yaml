@@ -11,7 +11,7 @@ info:
     url: 'https://www.restapi.cz'
     email: mirek@miroslavholec.cz
 servers:
-  - url: 'https://registracka.azurewebsites.net'
+  - url: 'https://stoplight.io/mocks/alefnula/reservation/123769807'
     description: Production
 tags:
   - name: Registrations
