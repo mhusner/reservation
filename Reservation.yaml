@@ -4,7 +4,7 @@ x-stoplight:
 info:
   title: Registračka
   version: '1.0'
-  summary: Ukázkové API pro účely přednášek
+  summary: Ukázkové API pro účely přednášek'
   description: Tato specifikace slouží jako ukázka možností OAS prezentované v rámci mých přednášek
   contact:
     name: Miroslav Holec
